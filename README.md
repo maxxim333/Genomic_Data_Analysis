@@ -34,8 +34,12 @@ This script needs bowtie2, samtools, htseq-count and bcftools. Also requires the
 - Runs htseq-count to display the number of reads mapping to each GFF feature (for each sample)
 - Joins the 4 files resulting from htseq-count output
 
-
-
+#Fourth script: At this point, Python should be downgraded to version 2.7. It will need ete3 and 2 auxiliary scripts: split_clusters.py and mmseq. Also it need all the reference proteomes (of the target organism and of a couple more organisms to perform orthology studies)
+- First thing this script does is it will take the target organisms proteome and concatenate it with proteomes of other organisms in a single file.
+- It will create a database of all sequences and then create clusters of proteins by sequence similarity and with a minimal coverage of 10%
+- It will create a separate FASTA file for each of the clusters and store them all in a new directory
+- Then, it will find all clusters that contain at least one of the genes found differentially expressed in previous analysis
+- Then it will build phylogenetic trees of these clusters
 
 
 
@@ -45,3 +49,4 @@ This script needs bowtie2, samtools, htseq-count and bcftools. Also requires the
 - (for the second script) samtools (Tools for alignments in the SAM format) Version: 0.1.19-96b5f2294a
 - (for the second script) Program: bcftools (Tools for data in the VCF/BCF formats) Version: 0.1.19-96b5f2294a
 - (for the second script) htseq-count (from 'HTSeq' framework, version 0.11.0.)
+- (for the 4th script) 3.1.1 (git-5147bbe) 
