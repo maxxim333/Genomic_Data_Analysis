@@ -16,10 +16,32 @@ This scripts needs SPAdes-3.13.0-0 and extracting the 4 compressed (tar.gz) samp
 
 At this point, the assembled transcript file joinedlineoutput.fasta was submitted to eggNOG functional annotation by a web-based servive. For eggNOG mapper functional annotation, this website was used http://eggnogdb.embl.de/#/app/emapper with DIAMOND option enabled and every other parameter left on default (the version was 4.5.1). The resulting file joinedlineoutput.fasta.emapper.annotations is the starting point of the second script.
 
+#Second script:
+This script needs bowtie2, samtools, htseq-count and bcftools. Also requires the 4 original samples, just like the first script, the FASTA file and gff file of reference genome and the EggNOG mapper output file.
+- Counts the total number of entries and annotations in EggNOG output file
+- Counts the number of genes in reference genome GFF file
+- Counts the summ of lenghts of all the annotated genes in gff file
+- Creates index for reference Genome with Bowtie2-build and performs the mappings of each of the 4 samples against reference
+- Also outputs the statistics of mappiings in a separate file
+- Converts SAM files of alignment into BAM files to shrink it
+- Sorts the resulting BAM files
+- Merges the resulting BAM files and creates an index
+- Performs a variant calling
+- From the resulting files where variant calling data is stored, it creates a TSV file with a subset of columns most relevant for downstream analysis
+- Working on .tsv file, it outputs the total number of entries, INDELs, entries with high quality and hight depth of coverage only.
+- Finds SNPs with the best quality and finds the respective gene it belongs to in the GFF file
+- Creates a BED file containing the variants that can be uploaded to IGV (or other visualization tool)
+- Runs htseq-count to display the number of reads mapping to each GFF feature (for each sample)
+- Joins the 4 files resulting from htseq-count output
+
 
 
 
 
 
 #Potentially required path changes and/or installations:
--(first script) /home/osboxes/anaconda_ete/pkgs/spades-3.13.0-0/share/spades-3.13.0-0/bin
+- (for the first script) SPAdes... /home/osboxes/anaconda_ete/pkgs/spades-3.13.0-0/share/spades-3.13.0-0/bin
+- (for the second script) bowtie2-2.3.4.3-linux-x86_64
+- (for the second script) samtools (Tools for alignments in the SAM format) Version: 0.1.19-96b5f2294a
+- (for the second script) Program: bcftools (Tools for data in the VCF/BCF formats) Version: 0.1.19-96b5f2294a
+- (for the second script) htseq-count (from 'HTSeq' framework, version 0.11.0.)
