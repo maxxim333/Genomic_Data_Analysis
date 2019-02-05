@@ -1,6 +1,8 @@
 # Genomic_Data_Analysis
 This is an integrated bottom-up analysis of Genomic data, simulating a real bioinformatic pipeline starting from raw transcriptome sequencing data. Three programming languages are used: shell, python2 and R 3.5.1.
 
+The description of the exercise can be found in a PDF called "GDAV final project..." and the answer sheet with interpretation of data and results at a biological level are in the PDF called " pdf_final_VASKIN_MAKSYM"
+
 It starts from 4 samples of single-read FASTA-format transcriptome files of a cyanobacterial strain that shows strange behaviour whet its growth condition is switched from light to dark. The goal is to find which genes could be responsible for such a phenotype. The 4 samples are two biological replicates of each growth conditions (light VS dark). Additional data provided are: reference genome and proteome (both FASTA) of the cyanobacterium and gene annotation file in form of GFF file. Also, reference proteomes of other species are provided for orthology experiments. NOTE: although innitial files have .fastq extensions, they are actually FASTA files.
 
 The workflow is divided in parts, each of them has a separate script + files and auxiliary scripts necessary to execute them. Scripts were designed in such a way that they replicate the whole pipeline by just clicking on them. However, some prir installation of some programs is required and consequently the path to those programs when executing the command should be changed. The list of such changes is presented in the end of this README:
@@ -55,7 +57,17 @@ This script needs bowtie2, samtools, htseq-count and bcftools. Also requires the
 - Find orthologous genes between out target strain and Arabidopsis Thaliana
 (the script is provided in jupyter notebook and also in PDF)
 
+#Fifth: This script takes the 14 orthologous genes of Arabidopsis Thaliana of 4 genes differentially expressed in out target cyanobacterium strain (found in script fourth_bis), asks some bioogical questions about it and finds out new biomarkers (using R). It needs 2 files: TableCellType has an information about each gene´s expression in each cell type in Arabidopsis. WOX5 is the stem-cell. the file TableStemCell is a complementation experiment data in which one of the key stem cell genes is mutated and complemented with overexpression of other genes.
+- Reads the table and makes a subset of data made of 14 orthologous genes
+- Makes a boxplot to visualizes gene expression distribution in different tissues
+- Build a heatmap of these genes
+- Performs a PCA
+- Does the similar for the other table
+- Finds biomarker genes for some of the tissues
+(The biological conclusions of this analysis are in the PDF called pdf_final_VASKIN_MAKSYM)
 
+
+·································································································
 #Potentially required path changes and/or installations:
 - (for the first script) SPAdes... /home/osboxes/anaconda_ete/pkgs/spades-3.13.0-0/share/spades-3.13.0-0/bin
 - (for the second script) bowtie2-2.3.4.3-linux-x86_64
