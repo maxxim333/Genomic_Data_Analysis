@@ -49,6 +49,11 @@ This script needs bowtie2, samtools, htseq-count and bcftools. Also requires the
 - Then, it will find all clusters that contain at least one of the genes found differentially expressed in previous analysis
 - Then it will build phylogenetic trees of these clusters
 
+#Fourth_bis: This script uses python and PlyloTree to:
+- Visualize the trees build previously
+- Traverse them and find speciation and duplication events
+- Find orthologous genes between out target strain and Arabidopsis Thaliana
+(the script is provided in jupyter notebook and also in PDF)
 
 
 #Potentially required path changes and/or installations:
