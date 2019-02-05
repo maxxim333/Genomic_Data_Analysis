@@ -34,6 +34,14 @@ This script needs bowtie2, samtools, htseq-count and bcftools. Also requires the
 - Runs htseq-count to display the number of reads mapping to each GFF feature (for each sample)
 - Joins the 4 files resulting from htseq-count output
 
+#Third script (DES): This script is done in R and takes the result from the output of the last script (htseq_count_all). This input file has the counts of each gene appearing in each sample, so in total it has 4 columns. The script:
+- Computes an histogram of p-values (adjusted or not) of differential expression of each gene in dark VS light growth condition
+- Extract genes that are differentially expressed in these two conditions (adj p-value <0.01)
+- Extracts the relevant info of these genes (fold change and log2fold-change)
+- Builds a heatmap
+- Saves results in a table
+
+
 #Fourth script: At this point, Python should be downgraded to version 2.7. It will need ete3 and 2 auxiliary scripts: split_clusters.py and mmseq. Also it need all the reference proteomes (of the target organism and of a couple more organisms to perform orthology studies)
 - First thing this script does is it will take the target organisms proteome and concatenate it with proteomes of other organisms in a single file.
 - It will create a database of all sequences and then create clusters of proteins by sequence similarity and with a minimal coverage of 10%
