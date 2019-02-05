@@ -6,6 +6,7 @@ It starts from 4 samples of single-read FASTA-format transcriptome files of a cy
 The workflow is divided in parts, each of them has a separate script + files and auxiliary scripts necessary to execute them. Scripts were designed in such a way that they replicate the whole pipeline by just clicking on them. However, some prir installation of some programs is required and consequently the path to those programs when executing the command should be changed. The list of such changes is presented in the end of this README:
 
 #First script:
+This scripts needs SPAdes-3.13.0-0 and extracting the 4 compressed (tar.gz) samples in FASTA forma
 - Computes the distribution of read lenght of one of the sample
 - Joins the 4 files in one single FASTA files
 - Converts FASTA to FASTQ
